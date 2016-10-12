@@ -23,7 +23,8 @@ namespace WebApplication5
             string cadena = ConfigurationManager.ConnectionStrings["DBZS"].ConnectionString;
             using (SqlConnection cnx = new SqlConnection(cadena))
             {
-                string SqlQuery = "SELECT ID,NOMBRE,FECHA,ID_GENERO FROM PELICULAS WHERE ID=1040";
+                //string SqlQuery = "SELECT ID,NOMBRE,FECHA,ID_GENERO FROM PELICULAS WHERE ID=1040";
+                string SqlQuery = "Select * from peliculas";
                 SqlCommand cmd = new SqlCommand(SqlQuery,cnx);
                 cnx.Open();
                 using (SqlDataReader rdr = cmd.ExecuteReader())
