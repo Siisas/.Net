@@ -23,8 +23,8 @@ namespace WebApplication5
             string cadena = ConfigurationManager.ConnectionStrings["DBZS"].ConnectionString;
             using (SqlConnection cnx = new SqlConnection(cadena))
             {
-                //string SqlQuery = "SELECT ID,NOMBRE,FECHA,ID_GENERO FROM PELICULAS WHERE ID=1040";
-                string SqlQuery = "Select * from peliculas";
+                string SqlQuery = "SELECT ID,NOMBRE,FECHA,ID_GENERO FROM PELICULAS WHERE ID=2019";
+                //string SqlQuery = "Select * from peliculas"; // al traerlo asi solo me trae el ultimo id
                 SqlCommand cmd = new SqlCommand(SqlQuery,cnx);
                 cnx.Open();
                 using (SqlDataReader rdr = cmd.ExecuteReader())
@@ -37,18 +37,20 @@ namespace WebApplication5
                 }
             }
         }
-
         protected void Button1_Click(object sender, EventArgs e)
         {
             string cadena = ConfigurationManager.ConnectionStrings["dbzs"].ConnectionString;
             using (SqlConnection cnx = new SqlConnection(cadena))
             {
-                string SQLQUERY = "UPDATE PELICULAS SET NOMBRE=@NOMBRE,FECHA=@FECHA,ID_GENERO=@ID_GENERO WHERE ID=@ID";
-                SqlCommand cmd = new SqlCommand(SQLQUERY, cnx);
-                cmd.Parameters.AddWithValue("@nombre", TextBox1.Text);
-                cmd.Parameters.AddWithValue("@fecha",Convert.ToDateTime(TextBox2.Text));
-                cmd.Parameters.AddWithValue("@id_genero", TextBox3.Text);
-                cmd.Parameters.AddWithValue("@id", HiddenField1.Value);
+                string SqlDelet = "DELETE FROM PELICULAS WHERE ID =2019";
+                SqlCommand cmd = new SqlCommand(SqlDelet, cnx);
+
+                //string SQLQUERY = "UPDATE PELICULAS SET NOMBRE=@NOMBRE,FECHA=@FECHA,ID_GENERO=@ID_GENERO WHERE ID=@ID";
+                //SqlCommand cmd = new SqlCommand(SQLQUERY, cnx);
+                //cmd.Parameters.AddWithValue("@nombre", TextBox1.Text);
+                //cmd.Parameters.AddWithValue("@fecha",Convert.ToDateTime(TextBox2.Text));
+                //cmd.Parameters.AddWithValue("@id_genero", TextBox3.Text);
+                //cmd.Parameters.AddWithValue("@id", HiddenField1.Value);
                 cnx.Open();
                 cmd.ExecuteNonQuery();
                 cnx.Close();
